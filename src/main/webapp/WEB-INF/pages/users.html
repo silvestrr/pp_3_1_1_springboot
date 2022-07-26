@@ -1,26 +1,42 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
 </head>
-<body>
-<h1>Hello!</h1>
-<br>
+<body th:align="center">
+<table th:align="center" th:border="2">
+    <caption>List of users</caption>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Country</th>
+        <th>Age</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="u : ${users}">
+        <tr>
+            <th th:text="${u.getName()}">
+            </th>
+            <th th:text="${u.getCountry()}">
 
-<h2>All users in database</h2>
-<div>
-    <th:block th:each="user : ${users}">
-        <br>
-        User # <a th:text="${user.getId()}"></a>
-        <a th:href="@{/{id}(id=${user.getId()})}" th:text="' '+ ${user.getName()}">user</a>
+            </th>
+            <th th:text="${u.getAge()}">
+
+            </th>
+            <th>
+                <a th:href="@{/{id}/edit(id=${u.getId()})}" class="btn btn-danger">Edit</a>
+            </th>
+            <th>
+                <a th:href="@{/{id}(id=${u.getId()})}" class="btn btn-danger">Delete</a>
+            </th>
+        </tr>
     </th:block>
-
-    <br>
-    <a th:href="@{/add}"><h2>Create new User</h2></a>
-
-
-</div>
+    </tbody>
+</table>
+<a th:href="@{/add}" class="btn btn-danger">Add</a>
 </body>
 </html>
