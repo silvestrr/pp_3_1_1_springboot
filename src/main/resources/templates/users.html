@@ -34,6 +34,9 @@
                 <a th:href="@{/{id}(id=${u.getId()})}" class="btn btn-danger">Delete</a>
             </th>
         </tr>
+        <form th:method="DELETE" th:action="@{/{id}(id=${u.getId()})}">
+
+        </form>
     </th:block>
     </tbody>
 </table>
